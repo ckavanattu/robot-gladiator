@@ -26,8 +26,9 @@ var fight = function (enemy) {
     //Alert players that they are starting the round
     // window.alert("Welcome to Robot Gladiators!");
 
-        fightOrSkip();    
-
+        if (fightOrSkip()) {
+            break;
+        }
                 
         //Subtract the value of 'playerInfo.attack' from the value of 'enemy.health' and use that result to update the value in the 'enemy.health' variable
         var damage= randomNumber(playerInfo.attack - 3, playerInfo.attack)
@@ -125,19 +126,17 @@ var endGame = function() {
 
 var shop = function () {
     var shopOptionPrompt = window.prompt( "Would you like to REfill your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE' or 'LEAVE' to make a choice.");
+    shopOptionPrompt = parseInt(shopOptionPrompt);
 
     switch(shopOptionPrompt) {
-        case"REFILL":
-        case "refill":
+        case 1:
            playerInfo.refillHealth();
             break;
         
-        case"UPGRADE":
-        case"upgrade":
+        case 2:
             playerInfo.upgradeAttack();
             break;
-        case"LEAVE":
-        case"leave":
+        case 3:
             window.alert("Leaving the Store.");
             
             break;
