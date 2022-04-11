@@ -22,11 +22,17 @@ if (promptFight === "" || promptFight === null) {
     }
 
 var fight = function (enemy) {
+    var isPlayerTurn= true;
+    if (Math.random() > 0.5) {
+        isPlayerTurn = false;
+    }
+
     while(playerInfo.health > 0 && enemy.health > 0) {
     //Alert players that they are starting the round
     // window.alert("Welcome to Robot Gladiators!");
 
-        if (fightOrSkip()) {
+        if (isPlayerTurn) {
+            if (fightOrSkip()){
             break;
         }
                 
@@ -51,6 +57,10 @@ var fight = function (enemy) {
             window.alert(enemy.name + " still has " + enemy.health + " health left.")
         };
 
+    }
+
+    else {
+
 
         //substract the value of 'enemy.attack' from the value of 'playerInfo.health' and use thta result to update the value in the 'playerInfo.health' variable.
         var damage = randomNumber(enemy.attack - 3, enemy.attack);
@@ -60,6 +70,7 @@ var fight = function (enemy) {
         console.log (
             enemy.name + " attacked " + playerInfo.name + ". " + playerInfo.name + " now has " + playerInfo.health + " health remaining."
         );
+    } 
 
         //check player health
         if (playerInfo.health <= 0) {
@@ -71,7 +82,7 @@ var fight = function (enemy) {
             window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.")
         }
 
-        //if player choses to skip
+        isPlayerTurn = !isPlayerTurn;
          
         
         };
